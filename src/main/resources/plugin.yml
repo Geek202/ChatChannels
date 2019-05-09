@@ -1,0 +1,3 @@
+name: ChatChannels
+version: 0.1-SNAPSHOT
+main: me.geek.tom.ChatChannels.ChatChannelsMain
