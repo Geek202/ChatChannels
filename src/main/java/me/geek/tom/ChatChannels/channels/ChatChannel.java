@@ -6,7 +6,6 @@ import me.geek.tom.ChatChannels.util.Perms;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 

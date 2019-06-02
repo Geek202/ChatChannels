@@ -17,6 +17,10 @@ public class ChatChannelsMain extends JavaPlugin {
 
     public static PluginLogger logger;
 
+    public ChannelManager getManager() {
+        return manager;
+    }
+
     private ChannelManager manager;
 
     private FileConfiguration config;

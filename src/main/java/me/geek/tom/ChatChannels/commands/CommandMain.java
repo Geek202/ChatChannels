@@ -1,6 +1,8 @@
 package me.geek.tom.ChatChannels.commands;
 
+import me.geek.tom.ChatChannels.ChatChannelsMain;
 import me.geek.tom.ChatChannels.events.ChannelChangeEvent;
+import me.geek.tom.ChatChannels.events.ChannelJoinEvent;
 import me.geek.tom.ChatChannels.events.CreateChannelEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -37,6 +39,12 @@ public class CommandMain implements CommandExecutor {
                 ChannelChangeEvent event = new ChannelChangeEvent(player, args[1]);
                 Bukkit.getServer().getPluginManager().callEvent(event);
                 return true;
+            }
+            case ("invite"): {
+                if (args.length < 3) {
+                    return false;
+                }
+                ChatChannelsMain.plugin.getManager().getInviteManager().invite(player, Bukkit.getPlayer(args[2]), ChatChannelsMain.plugin.getManager().getChannelFromName(args[1]));
             }
             default: {
                 return false;

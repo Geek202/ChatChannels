@@ -2,7 +2,9 @@ package me.geek.tom.ChatChannels.channels;
 
 import com.google.common.collect.Lists;
 import me.geek.tom.ChatChannels.ChatChannelsMain;
+import me.geek.tom.ChatChannels.channels.invites.InviteManager;
 import me.geek.tom.ChatChannels.events.ChannelChangeEvent;
+import me.geek.tom.ChatChannels.events.ChannelJoinEvent;
 import me.geek.tom.ChatChannels.events.CreateChannelEvent;
 import me.geek.tom.ChatChannels.util.Perms;
 import org.bukkit.Bukkit;
@@ -27,9 +29,16 @@ public class ChannelManager implements Listener {
 
     private HashMap<Player,ChatChannel> playerChannels = new HashMap<Player,ChatChannel>();
 
+    public InviteManager getInviteManager() {
+        return inviteManager;
+    }
+
+    private InviteManager inviteManager;
+
     public ChannelManager() {
         configChannels = Lists.newArrayList();
         tempChannels = Lists.newArrayList();
+        inviteManager = new InviteManager(this);
     }
 
     public void loadFromSection(ConfigurationSection section) {
@@ -67,7 +76,7 @@ public class ChannelManager implements Listener {
         loadOther();
     }
 
-    private ChatChannel getChannelFromName(String name) {
+    public ChatChannel getChannelFromName(String name) {
         if (name.equals(global.id)) {
             return global;
         }
@@ -160,5 +169,11 @@ public class ChannelManager implements Listener {
         event.setCancelled(true);
 
         playerChannels.get(event.getPlayer()).sendMessageToPlayer(event.getMessage(), event.getPlayer().getUniqueId().toString());
+    }
+
+    @EventHandler
+    public void joinEvent(ChannelJoinEvent event) {
+        ChatChannel channel = getChannelFromName(event.getChannel());
+
     }
 }
