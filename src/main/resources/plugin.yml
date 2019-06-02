@@ -1,3 +1,19 @@
 name: ChatChannels
 version: 0.1-SNAPSHOT
 main: me.geek.tom.ChatChannels.ChatChannelsMain
+
+commands:
+  chatchannels:
+    name: ChatChannels player command
+    usage: /chatchannels [create|accept|deny|leave|invite|talk|list] [channel name] <player name>
+    description: Access to player commands for ChatChannels
+    aliases:
+    - "cc"
+    - "chat"
+  chatchannelsadmin:
+    name: ChatChannels admin command
+    usage: /chatchannelsadmin [seeall|silentjoin|listall|forceadd|nofilter|forcespeak] <channel name> <player name>
+    description: Admin commands for ChatChannels
+    aliases:
+    - "ccadmin"
+    - "cca"
